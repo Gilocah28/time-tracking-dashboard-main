@@ -1,0 +1,188 @@
+@mixin borderR{
+    border-radius: 20px;
+}
+
+@mixin laptop {
+    @media screen and (max-width: 1259px) {
+        @content;
+    }
+}
+
+@mixin tablet {
+    @media screen and (max-width: 900px) {
+        @content;
+    }
+}
+
+@mixin SmTablet {
+    @media screen and (max-width: 650px) {
+        @content;
+    }
+}
+
+.main-container{
+    display: flex;
+    max-width: 1100px;
+    gap: 2rem;
+    animation: fade .50s ease-in-out;
+
+    @include laptop{
+        min-width: 100%;
+    }
+
+    @include tablet{
+        flex-direction: column;
+        min-width: 100%;
+        
+    }
+
+    @include SmTablet{
+        width: 100%;
+        
+    }
+
+   
+    .left-container{
+        flex: 1 1 200px;
+        background-color: $Darkblue;
+        @include borderR();
+
+
+        @include tablet(){
+           max-width: 100%;
+           
+        }
+        .details-container{
+
+            .detail{
+                height: 300px;
+                background-color: $Blue;
+                padding: 1.5rem;
+                @include borderR();
+                img{
+                    width: 80px;
+                    border: 3px solid $white;
+                    border-radius: 50%;
+                    margin-bottom: 2rem;
+                }
+            }
+            .info-container{
+                p{
+                    font-size: 15px;
+                    font-weight: 300;
+                }
+                h2{
+                    margin-top: 1rem;
+                    font-weight: 400;
+                    letter-spacing: 3px;
+                    line-height: 2.5rem;
+                    font-size: 2rem;
+                }
+            }
+
+            .btn-container{
+                height: 165px;
+                padding: 1rem;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-around;
+
+
+                .btn{
+                    text-align: left;
+                    font-size: 1rem;
+                    color: $gray;
+                    padding: .50rem 1rem;
+                    background-color: transparent;
+                    border: none;
+                    outline: none;
+
+                    &:hover{
+                        cursor: pointer;
+                        transition: all .20s ease-in-out;
+                        color: $white;
+                    }
+
+                    &:focus{
+                        color: $white;
+                    }
+                }
+            }
+        }
+    }
+
+    .right-container{
+        flex: 1 1 800px;
+        display: grid;
+        grid-template-columns: repeat(3,1fr);
+        gap: 2rem;
+        height: auto;
+
+        @include laptop{
+            grid-template-columns: repeat(2,1fr);
+            flex: 1 1 400px;
+            
+        }
+
+        @include SmTablet{
+            grid-template-columns: repeat(1,1fr);
+           
+         }
+
+        .work-details-container{
+            width: 300px;
+
+            @include SmTablet{
+                width: 100%;
+                
+             }
+
+            @include borderR();
+            .top-section{
+                border-radius: 20px 20px 0 0;
+                height: 60px;
+            }
+            .bottom-section{
+                @include borderR();
+                background-color: $Darkblue;
+                height: 190px;
+                margin-top: -1rem;
+                padding: 1rem 1.5rem;
+                .report-details{
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    p{
+                        font-size: 1.125rem;
+                        text-transform: capitalize;
+                      
+                    }
+                }
+
+                h1{
+                    margin-top: 2rem;
+                    font-size: 3rem;
+                    font-weight: 400;
+                    animation: fade .50s ease-in-out;
+                }
+                .hours{
+                    margin-top: .5rem;
+                    font-size: .80rem;
+                    letter-spacing: 1px;
+                    animation: fade .50s ease-in-out;
+                }
+            }
+
+            
+        }
+    }
+}
+
+@keyframes fade {
+    from{
+        opacity: 0;
+    }
+    to{
+        opacity: 1;
+    }
+}
